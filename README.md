@@ -1,24 +1,90 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Users table
+| Column             | Type    | Options     |
+| ------------------ | ------- | ----------- |
+| email              | string  | null: false |
+| encrypted_password | string  | null: false |
+| last_name          | string  | null: false |
+| first_name         | string  | null: false |
+| last_name          | string  | null: false |
+| first_name         | string  | null: false |
+| nickname           | string  | null: false |
+| birth_year         | integer | null: false |
+| birth_month        | integer | null: false |
+| birth_day          | integer | null: false |
+### Association
+- has_many :orders
 
-Things you may want to cover:
+## Items table
+| Column        | Type       | Options                        |
+| ------------- | ---------- | ------------------------------ |
+| itemName      | string     | null: false                    |
+| price         | integer    | null: false                    |
+| itemCategory  | references | null: false, foreign_key: true |
+| itemStatus    | references | null: false, foreign_key: true |
+| feeResp       | references | null: false, foreign_key: true |
+| prefecture    | references | null: false, foreign_key: true |
+| deliveryTerm  | references | null: false, foreign_key: true |
+### Association
+- has_many :orders
+- belongs_to :itemCategory
+- belongs_to :itemStatus
+- belongs_to :feeResp
+- belongs_to :prefecture
+- belongs_to :deliveryTerm
 
-* Ruby version
+## ItemCategory table
+| Column             | Type    | Options     |
+| ------------------ | ------- | ----------- |
+| itemCategoryName   | string  | null: false |
+### Association
+- has_many :items
 
-* System dependencies
+## ItemStatus table
+| Column             | Type    | Options     |
+| ------------------ | ------- | ----------- |
+| itemStatusName     | string  | null: false |
+### Association
+- has_many :items
 
-* Configuration
+## FeeResp table
+| Column             | Type    | Options     |
+| ------------------ | ------- | ----------- |
+| feeRespName        | string  | null: false |
+### Association
+- has_many :items
 
-* Database creation
+## Prefecture table
+| Column             | Type    | Options     |
+| ------------------ | ------- | ----------- |
+| prefectureName     | string  | null: false |
+### Association
+- has_many :items
 
-* Database initialization
+## DeliveryTerm table
+| Column             | Type    | Options     |
+| ------------------ | ------- | ----------- |
+| deliveryTermName   | string  | null: false |
+### Association
+- has_many :items
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Orders table
+| Column              | Type       | Options                        |
+| ------------------- | ---------- | ------------------------------ |
+| user                | references | null: false, foreign_key: true |
+| item                | references | null: false, foreign_key: true |
+| order_status        | string     | null: false                    |
+| card_number         | integer    | null: false                    |
+| card_expirymonth    | integer    | null: false                    |
+| card_expiryyear     | integer    | null: false                    |
+| card_cvc            | string     | null: false                    |
+| delivery_postalcode | string     | null: false                    |
+| delivery_prefecture | string     | null: false                    |
+| delivery_city       | string     | null: false                    |
+| delivery_block      | string     | null: false                    |
+| delivery_building   | string     | null: false                    |
+| orderer_phone_num   | string     | null: false                    |
+### Association
+- belongs_to :User
+- belongs_to :Item
