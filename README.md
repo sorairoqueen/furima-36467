@@ -17,18 +17,18 @@
 
 
 ## items table
-| Column            | Type       | Options                        |
-| ----------------- | ---------- | ------------------------------ |
-| item_name         | string     | null: false                    |
-| price             | integer    | null: false                    |
-| item_category     | integer    | null: false, foreign_key: true |
-| item_status       | integer    | null: false, foreign_key: true |
-| fee_resp          | integer    | null: false, foreign_key: true |
-| source_prefecture | integer    | null: false, foreign_key: true |
-| delivery_term     | integer    | null: false, foreign_key: true |
+| Column               | Type    | Options     |
+| -------------------- | ------- | ----------- |
+| item_name            | string  | null: false |
+| price                | integer | null: false |
+| item_category_id     | integer | null: false |
+| item_status_id       | integer | null: false |
+| fee_resp_id          | integer | null: false |
+| source_prefecture_id | integer | null: false |
+| delivery_term_id     | integer | null: false |
 ### Association
 - has_one :order
-- has_one :user, through: :user
+- has_one :user, through: :order
 
 
 ## orders table
@@ -39,10 +39,10 @@
 ### Association
 - belongs_to :user
 - belongs_to :item
-- has_one :deliveryaddress
+- has_one :delivery_address
 
 
-## deliveryaddress table
+## delivery_address table
 | Column                 | Type       | Options                        |
 | ---------------------- | ---------- | ------------------------------ |
 | order                  | references | null: false, foreign_key: true |
@@ -53,4 +53,4 @@
 | delivery_building      | string     |                                |
 | orderer_phone_num      | string     | null: false                    |
 ### Association
-- belongs_to : order
+- belongs_to :order
