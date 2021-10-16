@@ -13,22 +13,25 @@
 | birthday           | date    | null: false               |
 ### Association
 - has_many :orders
-- has_many :items, through: :orders
+- has_many :items
 
 
 ## items table
-| Column               | Type    | Options     |
-| -------------------- | ------- | ----------- |
-| item_name            | string  | null: false |
-| price                | integer | null: false |
-| item_category_id     | integer | null: false |
-| item_status_id       | integer | null: false |
-| fee_resp_id          | integer | null: false |
-| source_prefecture_id | integer | null: false |
-| delivery_term_id     | integer | null: false |
+| Column           | Type    | Options     |
+| ---------------- | ------- | ----------- |
+| item_name        | string  | null: false |
+| price            | integer | null: false |
+| item_category_id | integer | null: false |
+| item_status_id   | integer | null: false |
+| fee_resp_id      | integer | null: false |
+| prefecture_id    | integer | null: false |
+| delivery_term_id | integer | null: false |
+| user_id          | integer | null: false |
+| content          | string  | null: false |
+
 ### Association
 - has_one :order
-- has_one :user, through: :order
+- belongs_to :user
 
 
 ## orders table
@@ -43,14 +46,14 @@
 
 
 ## delivery_address table
-| Column                 | Type       | Options                        |
-| ---------------------- | ---------- | ------------------------------ |
-| order                  | references | null: false, foreign_key: true |
-| delivery_postalcode    | string     | null: false                    |
-| delivery_prefecture_id | integer    | null: false                    |
-| delivery_city          | string     | null: false                    |
-| delivery_block         | string     | null: false                    |
-| delivery_building      | string     |                                |
-| orderer_phone_num      | string     | null: false                    |
+| Column              | Type       | Options                        |
+| ------------------- | ---------- | ------------------------------ |
+| order               | references | null: false, foreign_key: true |
+| delivery_postalcode | string     | null: false                    |
+| prefecture_id       | integer    | null: false                    |
+| delivery_city       | string     | null: false                    |
+| delivery_block      | string     | null: false                    |
+| delivery_building   | string     |                                |
+| orderer_phone_num   | string     | null: false                    |
 ### Association
 - belongs_to :order
