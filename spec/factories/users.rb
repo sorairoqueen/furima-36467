@@ -8,5 +8,6 @@ FactoryBot.define do
     last_name_kana { 'ヤマダ' }
     first_name_kana { 'タロウ' }
     birthday { Faker::Date.between(from: '1961-04-02', to: '2012-04-01') }
+    id  { Faker::Number.within(range: 1..1000) }
   end
 end
