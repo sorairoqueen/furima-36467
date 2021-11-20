@@ -6,6 +6,7 @@ RSpec.describe Item, type: :model do
     @user = FactoryBot.build(:user)
     @user.save
     @item.user_id = @user.id
+    @item.image = fixture_file_upload('app/assets/images/rspec_test.jpeg')
   end
   describe '商品新規登録' do
     context '新規登録できるとき' do
@@ -109,11 +110,15 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("Delivery term can't be blank")
       end
-
       it 'userが空では登録できない' do
         @item.user_id = ''
         @item.valid?
         expect(@item.errors.full_messages).to include('User must exist')
+      end
+      it 'imageが空では登録できない' do
+        @item.image = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Image can't be blank")
       end
     end
   end
