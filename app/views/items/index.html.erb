@@ -129,7 +129,7 @@
     <ul class='item-lists'>
 
       <%# 商品がある場合は、商品一覧として表示 %>
-      <% unless @items == nil %>
+      <% if @items.present? %>
         <% @items.each do |item| %>
           <li class='list'>
             <%= link_to "#" do %>
