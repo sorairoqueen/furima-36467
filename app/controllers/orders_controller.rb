@@ -1,4 +1,5 @@
 class OrdersController < ApplicationController
+  before_action :move_to_index, only: [:index]
   def index
     @item = Item.find(params[:item_id])
     @OrderDeliveryAddress = OrderDeliveryAddress.new
@@ -34,4 +35,12 @@ class OrdersController < ApplicationController
       currency: 'jpy'
     )
   end
+
+  def move_to_index
+    item = Item.find(params[:item_id])
+    if item.order.present?
+      redirect_to root_path
+    end
+  end
+
 end
