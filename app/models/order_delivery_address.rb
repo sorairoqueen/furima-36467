@@ -8,7 +8,7 @@ class OrderDeliveryAddress
     validates :prefecture_id,
               numericality: { other_than: 1, message: "can't be blank" }
     validates :delivery_city, :delivery_block
-    validates :orderer_phone_num, format: { with: /[0-9]{10,11}/ }
+    validates :orderer_phone_num, format: { with: /\A[0-9]{10,11}\z/ }
     validates :user_id, :item_id, :token
   end
   def save

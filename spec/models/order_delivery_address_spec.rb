@@ -39,6 +39,11 @@ RSpec.describe OrderDeliveryAddress, type: :model do
         @OrderDeliveryAddress.valid?
         expect(@OrderDeliveryAddress.errors.full_messages).to include("Prefecture can't be blank")
       end
+      it 'prefecture_idで未選択を選ぶと保存できないこと' do
+        @OrderDeliveryAddress.prefecture_id = '1'
+        @OrderDeliveryAddress.valid?
+        expect(@OrderDeliveryAddress.errors.full_messages).to include("Prefecture can't be blank")
+      end
       it 'delivery_cityが空だと保存できないこと' do
         @OrderDeliveryAddress.delivery_city = ''
         @OrderDeliveryAddress.valid?
@@ -64,8 +69,13 @@ RSpec.describe OrderDeliveryAddress, type: :model do
         @OrderDeliveryAddress.valid?
         expect(@OrderDeliveryAddress.errors.full_messages).to include('Orderer phone num is invalid')
       end
-      it 'orderer_phone_numが10桁より小さい桁数だと保存できないこと' do
+      it 'orderer_phone_numが9桁以下だと保存できないこと' do
         @OrderDeliveryAddress.orderer_phone_num = '090123456'
+        @OrderDeliveryAddress.valid?
+        expect(@OrderDeliveryAddress.errors.full_messages).to include('Orderer phone num is invalid')
+      end
+      it 'orderer_phone_numが12桁以上だと保存できないこと' do
+        @OrderDeliveryAddress.orderer_phone_num = '123456789012'
         @OrderDeliveryAddress.valid?
         expect(@OrderDeliveryAddress.errors.full_messages).to include('Orderer phone num is invalid')
       end
