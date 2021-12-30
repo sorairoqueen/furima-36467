@@ -7,6 +7,6 @@ FactoryBot.define do
     delivery_block { '1-1' }
     delivery_building { '東京ハイツ' }
     orderer_phone_num { '09012345678' }
-    token {"tok_abcdefghijk00000000000000000"}
+    token { 'tok_abcdefghijk00000000000000000' }
   end
 end

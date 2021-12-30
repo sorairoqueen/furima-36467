@@ -57,17 +57,17 @@ RSpec.describe OrderDeliveryAddress, type: :model do
       it 'orderer_phone_numが全角の数字だと保存できないこと' do
         @OrderDeliveryAddress.orderer_phone_num = '０９０１２３４５６７８'
         @OrderDeliveryAddress.valid?
-        expect(@OrderDeliveryAddress.errors.full_messages).to include("Orderer phone num is invalid")
+        expect(@OrderDeliveryAddress.errors.full_messages).to include('Orderer phone num is invalid')
       end
       it 'orderer_phone_numが数字以外の半角文字だと保存できないこと' do
         @OrderDeliveryAddress.orderer_phone_num = '090abcd5&78'
         @OrderDeliveryAddress.valid?
-        expect(@OrderDeliveryAddress.errors.full_messages).to include("Orderer phone num is invalid")
+        expect(@OrderDeliveryAddress.errors.full_messages).to include('Orderer phone num is invalid')
       end
       it 'orderer_phone_numが10桁より小さい桁数だと保存できないこと' do
         @OrderDeliveryAddress.orderer_phone_num = '090123456'
         @OrderDeliveryAddress.valid?
-        expect(@OrderDeliveryAddress.errors.full_messages).to include("Orderer phone num is invalid")
+        expect(@OrderDeliveryAddress.errors.full_messages).to include('Orderer phone num is invalid')
       end
       it 'userが紐付いていないと保存できないこと' do
         @OrderDeliveryAddress.user_id = nil
