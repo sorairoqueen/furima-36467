@@ -1,7 +1,7 @@
 class OrderDeliveryAddress
   include ActiveModel::Model
-  attr_accessor :order_id, :user_id, :item_id, :delivery_postalcode, :prefecture_id, :delivery_city, :delivery_block,
-                :delivery_building, :orderer_phone_num, :price, :token
+  attr_accessor :user_id, :item_id, :delivery_postalcode, :prefecture_id, :delivery_city, :delivery_block,
+                :delivery_building, :orderer_phone_num, :token
 
   with_options presence: true do
     validates :delivery_postalcode, format: { with: /\A[0-9]{3}-[0-9]{4}\z/, message: 'is invalid. Include hyphen(-)' }
