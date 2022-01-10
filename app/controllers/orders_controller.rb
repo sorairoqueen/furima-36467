@@ -1,6 +1,8 @@
 class OrdersController < ApplicationController
+  before_action :authenticate_user!, only: [:index, :create]
   before_action :new_item, only: [:index, :create]
   before_action :move_to_index, only: [:index]
+
   def index
     @OrderDeliveryAddress = OrderDeliveryAddress.new
   end
@@ -37,7 +39,7 @@ class OrdersController < ApplicationController
   end
 
   def move_to_index
-    if @item.order.present?
+    if @item.order.present? || current_user.id = @item.user_id
       redirect_to root_path
     end
   end
