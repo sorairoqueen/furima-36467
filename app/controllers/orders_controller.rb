@@ -25,7 +25,7 @@ class OrdersController < ApplicationController
 
   def order_save
     params.require(:order_delivery_address).permit(:delivery_postalcode, :prefecture_id, :delivery_city, :delivery_block, :delivery_building, :orderer_phone_num).merge(
-      user_id: current_user.id, item_id: @item.id, price: @item.price, token: params[:token]
+      user_id: current_user.id, item_id: @item.id, token: params[:token]
     )
   end
 
